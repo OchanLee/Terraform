@@ -9,6 +9,17 @@ terraform {
 
 provider "aws" {
   # Configuration options
-  profile = default
-  region = af-south-1
+  profile = "default"
+  region  = "af-south-1"
+}
+
+variable "instance_type" {
+  type = string
+  default = "t2.micro"
+}
+
+resource "aws_instance" "test_server" {
+  ami           = "ami-0cf6249186288c4f0"
+  instance_type = var.instance_type
+
 }
